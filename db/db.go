@@ -43,13 +43,14 @@ student := Student{
 	Active: true,
 }*/
 
-func AddStudent(student Student) {
+func AddStudent(student Student) error{
 	db := Init()
 
 	result := db.Create(&student)
 	if result.Error != nil {
-		fmt.Println("Error to create student")
+		return result.Error
 	}
 
 	fmt.Println("Create student!")
+	return nil
 }
